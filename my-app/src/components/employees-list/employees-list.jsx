@@ -1,19 +1,21 @@
 import EmployeerListItem from "../employeer-list-item/employeer-list-item";
 import "./employees-list.css";
 
-const EmployeesList = ({ data }) => {
+const EmployeesList = ({ data, onDelete, onToggleRise, onToggleIncrease }) => {
   const elements = data.map((item) => {
     const { id, ...itemProps } = item;
-    return <EmployeerListItem key={id} {...itemProps} />;
+    return (
+      <EmployeerListItem
+        key={id}
+        {...itemProps}
+        onDelete={() => onDelete(id)}
+        onToggleRise={() => onToggleRise(id)}
+        onToggleIncrease={() => onToggleIncrease(id)}
+      />
+    );
   });
 
   return <ul className="app-list list-group">{elements}</ul>;
 };
 
 export default EmployeesList;
-
-/*
-      <EmployeerListItem name="John C." salary={800} />
-      <EmployeerListItem name="Alex M." salary={3000} />
-      <EmployeerListItem name="Carl W." salary={5000} />
-*/
